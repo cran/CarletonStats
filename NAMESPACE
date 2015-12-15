@@ -3,6 +3,14 @@
 export(anovaSummarized, boot, bootCor, bootPaired, corDemo, confIntDemo, groupedBar,
 missingLevel, permTest, permTestCor, permTestPaired, qqPlotDemo, stemPlot)
 
+importFrom("grDevices", "colors", "dev.new")
+importFrom("graphics", "abline", "barplot", "hist", "legend", "lines",
+   "mtext", "par", "plot", "points", "stem", "title")
+importFrom("stats", "complete.cases", "cor", "pf", "qnorm", "qqline",
+    "qqnorm", "qt", "quantile", "rbeta", "rbinom", "rchisq",
+    "rexp", "rf", "rnorm", "rt", "runif", "sd", "terms")
+
+
 S3method(boot, default)
 S3method(boot, formula)
 S3method(groupedBar, default)

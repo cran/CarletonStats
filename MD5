@@ -1,6 +1,6 @@
-2f0196fbb2c291bfd3191164387e6412 *DESCRIPTION
-0a2f48bc807df13b465016f297b0684c *NAMESPACE
-c54ba579c8c258d8dbcd553bbca7af3f *R/CarletonStats-internal.R
+86c6e591846c5ba5b816b35fe29c0efa *DESCRIPTION
+344255a23755725af2b63cb13d2332c9 *NAMESPACE
+f15dceed827a084c62aa753f41ffb86e *R/CarletonStats-internal.R
 219b1b7430d4721db7f62f58c36223d0 *R/anovaSummarized.R
 2feb0edc7493ae66dd63c384dbb20364 *R/boot.R
 bc90d7c6a985674d6047c84fbba29028 *R/boot.default.R
@@ -8,14 +8,14 @@ bc90d7c6a985674d6047c84fbba29028 *R/boot.default.R
 18918d27463aeed696cccb0b034db373 *R/bootCor.R
 41716821903cbbb663a6e81edc99fd81 *R/bootPaired.R
 f48f1e14712b65062a78589e3a5d088a *R/confIntDemo.R
-2b6bd367d4a7840c7b4051c6058315cc *R/corDemo.R
+aad9a839494363cd644050605c785932 *R/corDemo.R
 a5422db3f8ecec74ee2e407f9db7fe79 *R/groupedBar.R
-dc2c0f0cbbb3c6f55e9ee957b48075cb *R/groupedBar.default.R
+0a7ebdc5f7e2c0a3ebebf45790c93ecd *R/groupedBar.default.R
 434ab046426d9d7351ab9d75a13a329b *R/groupedBar.formula.R
 086085a6c7e11efe982ee3d30fa9b09f *R/missingLevel.R
 18957cc4ed223ab6c969d29be5b575bf *R/permTest.R
-7060f94277dbf93241f0d7502c4d0d46 *R/permTest.default.R
-7ac833fefa72ac09ed7768d787622f7d *R/permTest.formula.R
+e5293cf304a0fd74eb26004ecb50ebd2 *R/permTest.default.R
+0a96b719fb0e924e84b67351f921df0e *R/permTest.formula.R
 13f7cf55dbd054a82e6d3a9281bb4029 *R/permTestCor.R
 8e158477d6679cd4385bc3994de19ca3 *R/permTestPaired.R
 4a816594418f82f1a673b3d745d72479 *R/qqPlotDemo.R
@@ -25,7 +25,6 @@ ebb28c55ec597524102aa58b9df2ce70 *R/stemPlot.default.R
 083e3adda4def7670800a914c8a0dc99 *data/Icecream.rda
 664a5074df4e1873f1ab1bb9bf18a6ac *data/Milkshakes.rda
 ea1c86ed560890c69f57be1c1df71332 *data/states03.rda
-1502e84ab871456c8a73c4b8b4075861 *man/Carleton-package.Rd
 26614f73edce801bbd0e435c1e90ed66 *man/Icecream.Rd
 2b19883d5c8f1a247e400e88191a1612 *man/Milkshakes.Rd
 5001205bca65eb9933460f48932c6098 *man/anovaSummarized.Rd
