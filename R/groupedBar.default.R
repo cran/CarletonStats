@@ -1,6 +1,6 @@
 groupedBar.default <-
 function(x, condvar = NULL, percent = TRUE,  ylim = NULL, color = NULL,
-         cex.axis = NULL, cex.names = NULL,
+         cex.axis = NULL, cex.names = NULL, print = TRUE,
          legend = TRUE, legend.loc = "topright", inset = NULL, ...)
 {
 
@@ -91,8 +91,7 @@ function(x, condvar = NULL, percent = TRUE,  ylim = NULL, color = NULL,
 
    } #end else
 
- print(temp3)
-
+if (print) print(temp3)
 
  invisible(temp3)
 

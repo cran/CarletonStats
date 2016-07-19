@@ -1,7 +1,6 @@
 corDemo <-
 function(r = 0)
 {
-
     if (requireNamespace("MASS", quietly = TRUE)){
     cat("Input r. To quit, type r = 9\n")
      while(abs(r) <= 1)

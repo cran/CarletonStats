@@ -1,4 +1,5 @@
-permTest.default <- function(x, group, fun = mean,   B = 9999,
+permTest.default <-
+function(x, group, fun = mean,   B = 9999,
      alternative="two.sided", plot.hist = TRUE, legend.loc = "topright", plot.qq=FALSE, ...)
     {
 
@@ -54,6 +55,7 @@ permTest.default <- function(x, group, fun = mean,   B = 9999,
          2*min(P[1],P[2]),
          stop("Alternative not matched.")
   )
+  if (P.value > 1) P.value <- 1
 
   my.title <- paste("Permutation distribution", fun.name, ":\n" ,group1.name, "-", group2.name, sep= " ")
   out <- hist(result, plot = F)

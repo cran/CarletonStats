@@ -12,10 +12,10 @@ of two categorical variables.
 \usage{
 groupedBar(x, ...)
 
-\method{groupedBar}{default}(x, condvar = NULL, percent = TRUE, ylim = NULL, color = NULL, 
-    cex.axis = NULL, cex.names = NULL, legend = TRUE, legend.loc = "topright", 
-    inset = NULL, ...) 
-\method{groupedBar}{formula}(formula, data = parent.frame(), subset, ...) 
+\method{groupedBar}{default}(x, condvar = NULL, percent = TRUE, ylim = NULL, color = NULL,
+    cex.axis = NULL, cex.names = NULL, print = TRUE, legend = TRUE,
+    legend.loc = "topright", inset = NULL, ...)
+\method{groupedBar}{formula}(formula, data = parent.frame(), subset, ...)
 }
 \arguments{
   \item{x}{
@@ -25,13 +25,13 @@ a factor variable. If \code{x} is numeric, it will be coerced to a factor variab
    a factor variable to condition on. If \code{NULL}, then a bar plot of just
    the \code{x} variable will be created. If \code{condvar} is numeric, it will
    be coerced to a factor variable.
-   } 
+   }
     \item{percent}{
    a logical value. Should the y-axis give percent or counts?
    }
    \item{ylim}{
    set the y-axis range.
-   } 
+   }
    \item{color}{
    optional if you don't like the default colors for the bars. Type \code{colors()} to see the options.
    }
@@ -41,14 +41,17 @@ a factor variable. If \code{x} is numeric, it will be coerced to a factor variab
    \item{cex.names}{
    magnification for the bar labels.
    }
+   \item{print}{
+   a logical value. If \code{TRUE}, print out the table.
+   }
    \item{legend}{
    a logical value. If \code{TRUE}, include a legend.
    }
    \item{legend.loc}{
-   location of the legend. Options include \code{"topright"}, \code{"topleft"}, 
+   location of the legend. Options include \code{"topright"}, \code{"topleft"},
    \code{"bottomright"} and \code{"bottomleft"}.
    }
-   \item{inset}{inset distances from the margins as a fraction of the plot region when 
+   \item{inset}{inset distances from the margins as a fraction of the plot region when
      legend is placed by keyword. See \code{\link{legend}}.
    }
     \item{formula}{
