@@ -1,3 +1,31 @@
+#' Confidence Interval Demonstration
+#'
+#' Draw many random samples and compute confidence interval.  How many
+#' intervals capture the true mean?
+#'
+#' This simulation will draw 100 random samples from a given population
+#' distribution and compute the correpsonding confidence intervals. The 100
+#' intervals will be drawn with an indication of the ones that missed the true
+#' mean. A histogram of the population will also be created.
+#'
+#' @param distr distribution of the population to be sampled. Options include
+#' \code{"normal"}, \code{"exponential"}, \code{"uniform"} and \code{"binary"}
+#' (partial match allowed).
+#' @param size sample size
+#' @param conf.level confidence level.
+#' @return The command invisibly returns the fraction of intervals that capture
+#' the true mean.
+#' @author Laura Chihara
+#' @keywords confidence interval
+#' @examples
+#'
+#' confIntDemo()
+#'
+#' confIntDemo(distr = "exponential", size = 40)
+#'
+#'
+#' @importFrom stats rbinom rnorm rexp runif qt qnorm qt sd
+#' @export
 confIntDemo <-
 function(distr = "normal", size = 20, conf.level = .95)
 {
@@ -54,7 +82,6 @@ function(distr = "normal", size = 20, conf.level = .95)
         index[i] <- T
 
       }
-
   }
 
     xmin <- min(temp[,1])
@@ -62,7 +89,7 @@ function(distr = "normal", size = 20, conf.level = .95)
 
    #Rstudio doesn't have a dev.new() command
    if (Sys.getenv("RSTUDIO_USER_IDENTITY") == "")
-     dev.new()
+     grDevices::dev.new()
 
     plot(seq(xmin,xmax,length = 101), 0:100, type = "n", xlab = "", ylab = "")
     abline(v = mu)
@@ -84,8 +111,6 @@ function(distr = "normal", size = 20, conf.level = .95)
      sub.text <- paste(count, " intervals cover true mean", sep = " ")
      title(main = title.text, sub = sub.text)
     }
-
-
 
      invisible(count/100)
 

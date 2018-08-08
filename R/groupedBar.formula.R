@@ -1,9 +1,11 @@
+#' @describeIn groupedBar Grouped bar chart
+#' @export
+
 groupedBar.formula <-
-function(formula, data = parent.frame(), subset,  ...)
+function(formula, data=parent.frame() , subset,  ...)
 {
 
-   if (length(formula) > 3L)
-        stop("'formula' incorrect")
+    if (length(formula) > 3L) stop("'formula' incorrect")
 
     m <- match.call(expand.dots = FALSE)
     if (is.matrix(eval(m$data, parent.frame())))
@@ -18,7 +20,7 @@ function(formula, data = parent.frame(), subset,  ...)
      cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
 
      if (length(formula) == 2L) {
-        do.call("groupedBar", c(list(x = unlist(mf)), list(...)))
+        do.call("groupedBar", c(list(resp = unlist(mf), resp.name=varnames[1]), list(...)))
 
       } else {
 
@@ -27,6 +29,6 @@ function(formula, data = parent.frame(), subset,  ...)
      g <- mf[[-response]]
      names(g) <- varnames[2]
 
-     y <- do.call("groupedBar", c(list(y, g), list(...)))
+     y <- do.call("groupedBar", c(list(y, g, cond.name=varnames[2], resp.name=varnames[1]), list(...)))
     }#end else
 }

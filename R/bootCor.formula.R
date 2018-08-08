@@ -1,11 +1,12 @@
-#' @describeIn boot Bootstrap a single variable or a grouped variable
+#' @describeIn bootCor Bootstrap the correlation of two numeric variables.
 #' @export
 
-boot.formula <-
-function(formula,  data, subset , ...)
+bootCor.formula <-
+function(formula,  data, subset ,  ...)
 {
 
-    if (missing(formula) || (length(formula) > 3L) )
+    if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]),
+        "term.labels")) != 1L))
         stop("'formula' missing or incorrect")
 
     m <- match.call(expand.dots = FALSE)
@@ -14,24 +15,15 @@ function(formula,  data, subset , ...)
      m[[1L]] <- as.name("model.frame")
      m$... <- NULL
      mf <- eval(m, parent.frame())
+     if (length(mf)!= 2L)
+       stop("Invalid formula")
 
      nmiss <- length(attr(mf, "na.action"))
      if (nmiss > 0)
       cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
     varnames <- names(mf)
-
-      if (length(formula) == 2L){
-    g <- NULL
-    y <- mf[[1]]
-
-    }
-else{
-     response <- attr(attr(mf, "terms"), "response")
+    response <- attr(attr(mf, "terms"), "response")
     y <- mf[[response]]
-      g <- mf[[-response]]
-
-     }
-
-       y <- do.call("boot", c(list(y, g,  x.name=varnames[1]), list(...)))
-
+    x <- mf[[-response]]
+    y <- do.call("bootCor", list(x, y, x.name=varnames[2], y.name=varnames[1],...))
 }

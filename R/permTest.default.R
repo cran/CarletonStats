@@ -1,13 +1,11 @@
-permTest.default <-
-function(x, group, fun = mean,   B = 9999,
+#' @describeIn permTest Permutation test
+#' @export
+
+permTest.default <- function(x, group, statistic = mean,   B = 9999,
      alternative="two.sided", plot.hist = TRUE, legend.loc = "topright", plot.qq=FALSE, ...)
     {
 
-       if (is.character(fun)){
-        fun.name <- fun
-        fun <- eval(parse(text=fun))
-        } else  fun.name <- deparse(substitute(fun))
-
+      stat <- match.fun(statistic)
 
       if (!is.numeric(x)) stop("Variable must be numeric.")
       if (is.factor(group)) {
@@ -28,24 +26,24 @@ function(x, group, fun = mean,   B = 9999,
     group1.name <- levels(group)[1]
     group2.name <- levels(group)[2]
 
-    stat1 <- round(fun(group1), 5)
-    stat2 <- round(fun(group2), 5)
+    stat1 <- round(stat(group1), 5)
+    stat2 <- round(stat(group2), 5)
     n <-length(x)
     m <- length(group1)
 
-    observed <- fun(group1) - fun(group2)
+    observed <- stat(group1) - stat(group2)
 
     result <- numeric(B)
     for (i in 1:B)
     {
-       index <- sample(n, m, replace=FALSE)
-       result[i] <- fun(x[index]) - fun(x[-index])
+       index <- sample(n, m, replace = FALSE)
+       result[i] <- stat(x[index]) - stat(x[-index])
      }  #end for
 
   mean.PermDist <- round(mean(result), 5)
   sd.PermDist <- round(sd(result), 5)
 
-  alt <- pmatch(alternative, c("less", "greater", "two.sided"), nomatch=4)
+  alt <- pmatch(alternative, c("less", "greater", "two.sided"), nomatch = 4)
 
    P <- c((sum(result <= observed) + 1)/(B + 1), (sum(result >= observed) + 1)/(B + 1))
 
@@ -57,22 +55,24 @@ function(x, group, fun = mean,   B = 9999,
   )
   if (P.value > 1) P.value <- 1
 
-  my.title <- paste("Permutation distribution", fun.name, ":\n" ,group1.name, "-", group2.name, sep= " ")
+  if (plot.hist){
+
+  my.title <- paste("Permutation distribution of statistic:\n" ,group1.name, "-", group2.name, sep= " ")
   out <- hist(result, plot = F)
   out$density <- 100*out$counts/sum(out$counts)
   xrange <- range(c(out$breaks, observed))
-  plot(out, freq = FALSE, ,xlim = xrange, main=my.title, ylab="Percent", cex.main=.9,
+  plot(out, freq = FALSE, ,xlim = xrange, main = my.title, ylab = "Percent", cex.main = .9,
   xlab = "Differences", cex.lab = .9)
 
    points(observed, 0, pch = 2, col = "red")
    points(mean.PermDist, 0, pch = 8, col = "blue")
    legend(legend.loc, legend = c("Observed", "Permutation"), pch = c(2, 8), col= c("red", "blue"),
     cex = .9)
-
+   }
 
   cat("\n\t** Permutation test **\n")
   cat("\n Permutation test with alternative:", alternative,"\n")
-  cat(" Observed ", fun.name, "\n")
+  cat(" Observed statistic\n")
   cat(" ", group1.name, ": ",stat1, "\t", group2.name,": ", stat2,"\n")
   cat(" Observed difference:", round(observed, 5), "\n\n")
   cat(" Mean of permutation distribution:", mean.PermDist, "\n")

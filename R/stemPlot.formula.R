@@ -1,10 +1,12 @@
+#' @describeIn stemPlot Stem and leaf plot
+#' @export
+
 stemPlot.formula <-
 function(formula, data = parent.frame(), subset,...)
 {
 
-    if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]),
-       "term.labels")) != 1L))
-       stop("'formula' missing or incorrect")
+    if (missing(formula) || length(attr(terms(formula),"term.labels")) != 1L)
+        stop("'formula' incorrect")
 
     m <- match.call(expand.dots = FALSE)
     if (is.matrix(eval(m$data, parent.frame())))
@@ -20,11 +22,20 @@ function(formula, data = parent.frame(), subset,...)
     varnames <- names(mf)
     names(mf) <- NULL
 
+
+if (length(formula) == 2L){
+    g <- NULL
+    y <- mf[[1]]
+    gname <- NULL
+    yname <- varnames[1]
+    }
+else{
     response <- attr(attr(mf, "terms"), "response")
     y <- mf[[response]]
     g <- mf[[-response]]
     yname <- varnames[1]
     gname <- varnames[2]
+    }
 
     y <- do.call("stemPlot", c(list(y, g, varname = yname, grpvarname = gname),...))
 

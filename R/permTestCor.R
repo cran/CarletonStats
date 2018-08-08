@@ -1,71 +1,55 @@
+#' Permutation test for the correlation of two variables.
+#'
+#' Hypothesis test for a correlation of two variables. The null hypothesis is
+#' that the population correlation is 0.
+#'
+#' Perform a permutation test to test \eqn{latex}{H_0: \rho = 0}, where
+#' \eqn{latex}{\rho}is the population correlation. The rows of the second
+#' variable are permuted and the correlation is re-computed.
+#'
+#' The mean and standard error of the permutation distribution is printed as
+#' well as a P-value.
+#'
+#' Observations with missing values are removed.
+#'
+#' @aliases permTestCor permTestCor.default permTestCor.formula
+#' @param x a numeric vector.
+#' @param y a numeric vector.
+#' @param B the number of resamples to draw (positive integer greater than 2).
+#' @param alternative alternative hypothesis. Options are \code{"two.sided"},
+#' \code{"less"} or \code{"greater"}.
+#' @param plot.hist a logical value. If \code{TRUE}, plot the distribution of
+#' the correlations obtained from each resample.
+#' @param legend.loc location of the legend on the histogram. Options are
+#' \code{"topright"}, \code{"topleft"}, \code{"bottomleft"} and
+#' \code{"bottomright"}.
+#' @param plot.qq a logical value. If \code{TRUE}, plot the normal
+#' quantile-quantile plot of the correlations obtained from each resample.
+#' @param x.name Label for variable x
+#' @param y.name Label for variable y
+#' @param formula a formula \code{y ~ x} where \code{x, y} are numeric vectors.
+#' @param data a data frame that contains the variables given in the formula.
+#' @param subset an optional expression indicating what observations to use.
+#' @param \dots further arguments to be passed to or from methods.
+#' @return Returns invisibly a vector of the correlations obtained by the
+#' randomization.
+#' @author Laura Chihara
+#' @references Tim Hesterberg's website:
+#' \url{http://www.timhesterberg.net/bootstrap}
+#' @keywords permutation test randomization resampling correlation
+#' @examples
+#'
+#' plot(states03$HSGrad, states03$TeenBirths)
+#' cor(states03$HSGrad, states03$TeenBirths)
+#'
+#' permTestCor(states03$HSGrad, states03$TeenBirths)
+#' permTestCor(TeenBirths ~ HSGrad, data = states03)
+#'
+#' @export
+
 permTestCor <-
-function(x, y,  B = 999,
-     alternative="two.sided",  plot.hist = TRUE, legend.loc = "topright", plot.qq = FALSE)
-    {
-
-    #get character strings from variables
-    x.name<-deparse(substitute(x))
-    y.name<-deparse(substitute(y))
-
-
-   if (!is.numeric(x)) stop("Variable 1 must be numeric")
-   if (!is.numeric(y)) stop("Variable 2 must be numeric")
-
-    comCases <- complete.cases(x, y)
-    nmiss <- length(x) - sum(comCases)
-    if (nmiss > 0)
-     cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
-
-    x <- x[comCases]
-    y <- y[comCases]
-
-    n <-length(x)
-    observed <- round(cor(x, y), 4)
-
-    result <- numeric(B)
-    for (i in 1:B)
-    {
-       index <- sample(n, n, replace=FALSE)
-       newy <- y[index]
-       result[i] <- cor(x, newy)
-     }  #end for
-
-  mean.PermDist <- round(mean(result), 4)
-  sd.PermDist <- round(mean(result), 4)
-
-  alt <- pmatch(alternative, c("less", "greater", "two.sided"), nomatch=4)
-
-   P <- c((sum(result <= observed) + 1)/(B+1), (sum(result >= observed) + 1)/(B+1))
-
-   P.value <- switch(alt,
-         P[1],
-         P[2],
-         2*min(P[1],P[2]),
-         stop("Alternative not matched.")
-  )
-   if (P.value > 1) P.value <- 1
-
-  my.title <- paste("Permutation distribution of correlation: " ,x.name, ", ", y.name, sep= " ")
-  out <- hist(result, plot = F)
-  out$density <- 100*out$counts/sum(out$counts)
-  xrange <- range(c(out$breaks, observed))
-  plot(out, freq = FALSE, ,xlim = xrange, main = my.title, ylab = "Percent", cex.main = .9,
-  xlab="Correlation", cex.lab=.9)
-
-   points(observed, 0, pch = 2, col = "red")
-   points(mean.PermDist, 0, pch = 8, col = "blue")
-  legend(legend.loc, legend = c("Observed", "Permutation"), pch = c(2, 8), col= c("red", "blue"),
-      cex = .9)
-
-
-  cat("\n\t** Permutation test: Correlation **\n")
-  cat("\n Permutation test with alternative:", alternative,"\n")
-  cat(" Observed correlation bewteen", x.name, ", ", y.name, ": ", observed, "\n")
-  cat(" Mean of permutation distribution:", mean.PermDist, "\n")
-  cat(" Standard error of permutation distribution:", sd.PermDist, "\n")
-  cat(" P-value: ", round(P.value, 5),"\n")
-   cat("\n\t*-------------*\n\n")
-
-  invisible(result)
+function(x,  ...)
+{
+  UseMethod("permTestCor")
 
 }

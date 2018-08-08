@@ -1,3 +1,6 @@
+#' @describeIn permTest Permutation test
+#' @export
+
 permTest.formula <-
 function(formula, data = parent.frame(), subset,...)
 { if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]),

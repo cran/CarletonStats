@@ -1,3 +1,6 @@
+#' @describeIn stemPlot Stem and leaf plot
+#' @export
+
 stemPlot.default <-
 function(x, grpvar = NULL, varname = NULL, grpvarname = NULL, ...)
 {

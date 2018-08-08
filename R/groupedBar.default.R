@@ -1,97 +1,94 @@
+#' @describeIn groupedBar Grouped bar chart
+#' @export
+
 groupedBar.default <-
-function(x, condvar = NULL, percent = TRUE,  ylim = NULL, color = NULL,
-         cex.axis = NULL, cex.names = NULL, print = TRUE,
-         legend = TRUE, legend.loc = "topright", inset = NULL, ...)
+function(resp, condvar = NULL, percent = TRUE,  print = TRUE,
+         cond.name = deparse(substitute(condvar)), resp.name = deparse(substitute(resp)),
+         ...)
 {
 
-  if (!is.factor(x))
-      {x <- as.factor(x)
-      } else x <- droplevels(x)
+  cond.name <- cond.name
+  resp.name <- resp.name
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {stop("ggplot2 packaged needed for this function to work.")}
+
+  if (!is.factor(resp))
+      {resp <- as.factor(resp)
+      } else resp <- droplevels(resp)
 
    #single variable
     if (is.null(condvar))
      {
-      m <- length(levels(x))
-      xnames <- levels(x)
-      nmiss <- length(x) - sum(complete.cases(x))
+      m <- length(levels(resp))
+      gnames <- levels(resp)
+
+      nmiss <- length(resp) - sum(complete.cases(resp))
       if (nmiss > 0)
         cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
 
-      if (is.null(color))
-        color <- "lightblue"
-        tabx <- table(x)
-        if (percent) {
-          tabx <- round(tabx/sum(tabx), 5)*100
-          maxx <- max(tabx)
-          if (is.null(ylim))
-            ylim <- c(0, maxx + 5)
-          ylab <- "Percent"
-          temp3 <- c(as.vector(tabx), sum(tabx))
-          names(temp3) <- c(xnames, "Sum")
+       if (percent)
+        {temp3 <- prop.table(table(resp))*100
+          ylabel <- "Percent (%)"}
+        else
+         {
+           temp3 <- table(resp)
+            ylabel = "Count"
+         }
 
-        } else {ylab <- "Count"
-           temp3 <- tabx
-        }
+       out.df <- as.data.frame(temp3)
 
-      barplot(tabx, names = xnames, col = color, ylab = ylab, ylim = ylim,...)
+       p <- ggplot2::ggplot(out.df) + ggplot2::geom_bar(ggplot2::aes_string(x = 'resp', y = 'Freq'), stat = "identity", fill = "steelblue") +
+             ggplot2::labs(x = resp.name, y = ylabel)
 
-    } else { #Two categorical variables
+      print(p)
+
+      temp4 <- c(as.vector(temp3), sum(temp3))
+      names(temp4) <- c(gnames, ylabel)
+
+    }   #end 1 categorical variable
+    else { #Two categorical variables
 
     if (!is.factor(condvar))
         {condvar <- as.factor(condvar)
         } else condvar <- droplevels(condvar)
 
-    lenres <- length(x)
-    comCases <- complete.cases(x, condvar)
+    lenres <- length(resp)
+    comCases <- complete.cases(resp, condvar)
     nmiss <- lenres - sum(comCases)
 
    if (nmiss > 0)
     cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
 
-    temp2 <- t(table(x, condvar))
+    temp2 <- table(condvar, resp)
+    n <- dim(temp2)[1] #conditioning variable
+    #number of conditioning levels
+     m <- dim(temp2)[2]
+      condnames <- dimnames(temp2)[[1]]
+      respnames <- dimnames(temp2)[[2]]
 
     if (percent)
      {
-      temp3 <- t(apply(temp2, 1, function(x) x/sum(x)))
-      temp2 <- round(temp3, 5)*100
-      ylab <- "Percent"
-      if (is.null(ylim))
-         ylim <- c(0, max(temp2) + 5)
-     } else ylab <- "Count"   #end if (percent)
+      temp3 <- round(100*prop.table(table(condvar, resp), 1), 3)
+      data <- as.data.frame(temp3)
+     } else {
+         data <- as.data.frame(temp2)
+      }
 
-    condnames <- dimnames(temp2)[[1]]
+     p <- ggplot2::ggplot(data, ggplot2::aes_string(x = 'condvar', y = 'Freq', fill = 'resp')) + ggplot2::geom_bar(position = "dodge", stat = "identity") +
+           ggplot2::labs(x = cond.name, y = "Percent", fill = resp.name)
 
-    n <- dim(temp2)[1] #conditioning variable
-    #number of conditioning levels
-    m <- dim(temp2)[2]
+    print(p)
 
-   if(is.null(color))
-      {k <- 1 + 8*(1:n)
-       color <- colors()[k]
-       }
-
-     if (is.null(cex.names))
-       cex.names = .8
-     if (is.null(cex.axis))
-        cex.axis = .8
-
-  par.orig <- par(mar = c(4.1, 4.1, 3.1, 2.1))
-    barplot(temp2, beside = T, space = c(0, 1), col = color,
-       ylab = ylab, ylim = ylim, cex.names = cex.names, cex.axis = cex.axis, ...)
-
-    if (is.null(inset))
-       inset <- c(0, -0.1)
-     if (legend)
-       legend(legend.loc, legend = condnames, fill = color, xpd = TRUE, cex = .7, inset = inset)
-
-   on.exit(par(par.orig))
-
-    temp3 <- cbind(temp2, rowSums(temp2))
-    dimnames(temp3)[[2]][m+1] <- "Sum"
+    if (percent){
+    temp4 <- cbind(temp3, rowSums(temp3))
+    dimnames(temp4)[[2]][m+1] <- "Sum (%)"
+    }
+    else { temp4 <- cbind(temp2, rowSums(temp2))
+     dimnames(temp4)[[2]][m+1] <- "Sum"
+    }
 
    } #end else
 
-if (print) print(temp3)
+if (print) print(temp4)
 
  invisible(temp3)
 

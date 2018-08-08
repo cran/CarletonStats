@@ -1,3 +1,27 @@
+#' Correlation demonstration
+#'
+#' For a given \code{r}, create a scatterplot of two variables with that
+#' correlation.
+#'
+#' Demonstrate the concept of correlation by inputting a number between -1 and
+#' 1 and seeing a scatter plot of two variables with that correlation. Once you
+#' invoke this command, you can continue to enter values for r. Type any number
+#' \eqn{latex}{abs(r)> 1 }) to exit.
+#'
+#' @param r a number between -1 and 1. Enter any number r, \eqn{latex}{abs(r)>
+#' 1 }, to exit the interactive session[
+#' @author Laura Chihara
+#' @keywords Correlation
+#' @examples
+#'
+#' \dontrun{
+#' corDemo()
+#' }
+#'
+#' @export
+#'
+
+
 corDemo <-
 function(r = 0)
 {
