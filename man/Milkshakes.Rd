@@ -5,7 +5,8 @@
 \alias{Milkshakes}
 \title{Milkshakes (chocolate)
 Nutrional information on chocolate milkshakes from a sample of restaurants.}
-\format{A data frame with 29 observations on the following 11 variables.
+\format{
+A data frame with 29 observations on the following 11 variables.
 \describe{
 \item{Restaurant}{Names of restaurants}
 \item{Type}{Type of restaurant, \code{Dine In} \code{Fast Food}}
@@ -18,7 +19,8 @@ serving (g)}
 \item{CalPerOunce}{Calories per ounce}
 \item{FatPerOunce}{Fat per ounce}
 \item{CarbsPerOunce}{Carbohydrates per ounce}
-}}
+}
+}
 \source{
 Data collected by Carleton students Yoni Blumberg (2013) and Lindsay
 Guthrie (2013).

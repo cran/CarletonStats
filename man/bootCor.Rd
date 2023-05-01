@@ -9,10 +9,19 @@
 \usage{
 bootCor(x, ...)
 
-\method{bootCor}{default}(x, y, conf.level = 0.95, B = 10000,
-  plot.hist = TRUE, hist.title = NULL, plot.qq = FALSE,
-  legend.loc = "topright", x.name = deparse(substitute(x)),
-  y.name = deparse(substitute(y)), ...)
+\method{bootCor}{default}(
+  x,
+  y,
+  conf.level = 0.95,
+  B = 10000,
+  plot.hist = TRUE,
+  hist.title = NULL,
+  plot.qq = FALSE,
+  legend.loc = "topright",
+  x.name = deparse(substitute(x)),
+  y.name = deparse(substitute(y)),
+  ...
+)
 
 \method{bootCor}{formula}(formula, data, subset, ...)
 }
@@ -66,22 +75,22 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Bootstrap the correlation of two numeric variables.
+\item \code{bootCor(default)}: Bootstrap the correlation of two numeric variables.
 
-\item \code{formula}: Bootstrap the correlation of two numeric variables.
+\item \code{bootCor(formula)}: Bootstrap the correlation of two numeric variables.
+
 }}
-
 \examples{
 
 
 plot(states03$ColGrad, states03$InfMortality)
-bootCor(InfMortality ~ ColGrad, data = states03)
-bootCor(states03$ColGrad, states03$InfMortality)
+bootCor(InfMortality ~ ColGrad, data = states03, B = 1000)
+bootCor(states03$ColGrad, states03$InfMortality, B = 1000)
 
 }
 \references{
 Tim Hesterberg's website
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

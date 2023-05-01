@@ -92,6 +92,6 @@ NULL
 #' 100000 population}
 #'  \item{Homeowners}{Home ownership rate}
 #' }
-#' @source United States Census Bureau \url{http://www.census.gov/}
+#' @source United States Census Bureau \url{https://www.census.gov/}
 #' @keywords datasets
 NULL

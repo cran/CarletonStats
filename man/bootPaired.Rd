@@ -9,10 +9,18 @@
 \usage{
 bootPaired(x, ...)
 
-\method{bootPaired}{default}(x, y, conf.level = 0.95, B = 10000,
-  plot.hist = TRUE, plot.qq = FALSE, legend.loc = "topright",
-  x.name = deparse(substitute(x)), y.name = deparse(substitute(y)),
-  ...)
+\method{bootPaired}{default}(
+  x,
+  y,
+  conf.level = 0.95,
+  B = 10000,
+  plot.hist = TRUE,
+  plot.qq = FALSE,
+  legend.loc = "topright",
+  x.name = deparse(substitute(x)),
+  y.name = deparse(substitute(y)),
+  ...
+)
 
 \method{bootPaired}{formula}(formula, data, subset, ...)
 }
@@ -63,11 +71,11 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Perform a bootstrap of two paired variables.
+\item \code{bootPaired(default)}: Perform a bootstrap of two paired variables.
 
-\item \code{formula}: Perform a bootstrap of two paired variables.
+\item \code{bootPaired(formula)}: Perform a bootstrap of two paired variables.
+
 }}
-
 \examples{
 
 #Bootstrap the mean difference of fat content in vanilla and chocolate ice
@@ -80,7 +88,7 @@ bootPaired(Icecream$VanillaFat, Icecream$ChocFat)
 }
 \references{
 Tim Hesterberg's website
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

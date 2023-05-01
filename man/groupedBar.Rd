@@ -9,9 +9,15 @@
 \usage{
 groupedBar(resp, ...)
 
-\method{groupedBar}{default}(resp, condvar = NULL, percent = TRUE,
-  print = TRUE, cond.name = deparse(substitute(condvar)),
-  resp.name = deparse(substitute(resp)), ...)
+\method{groupedBar}{default}(
+  resp,
+  condvar = NULL,
+  percent = TRUE,
+  print = TRUE,
+  cond.name = deparse(substitute(condvar)),
+  resp.name = deparse(substitute(resp)),
+  ...
+)
 
 \method{groupedBar}{formula}(formula, data = parent.frame(), subset, ...)
 }
@@ -56,22 +62,24 @@ uses R's \code{table} command so missing values are automatically removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Grouped bar chart
+\item \code{groupedBar(default)}: Grouped bar chart
 
-\item \code{formula}: Grouped bar chart
+\item \code{groupedBar(formula)}: Grouped bar chart
+
 }}
-
 \examples{
 
 
 groupedBar(states03$Region)
 
+\dontrun{
 groupedBar(states03$DeathPenalty, states03$Region, legend.loc = "topleft")
 
 #Using a formula syntax:
+
 groupedBar(~Region, data = states03)
 groupedBar(DeathPenalty ~ Region, data = states03, legend.loc = "topleft")
-
+}
 
 }
 \author{

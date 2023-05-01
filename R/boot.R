@@ -37,7 +37,7 @@
 #' @return A vector with the resampled statistics is returned invisibly.
 #' @author Laura Chihara
 #' @references Tim Hesterberg's website
-#' \url{http://www.timhesterberg.net/bootstrap}
+#' \url{https://www.timhesterberg.net/bootstrap-and-resampling}
 #' @keywords bootstrap resampling randomization
 #' @examples
 #'
@@ -46,10 +46,10 @@
 #' boot(ToothGrowth$len)
 #'
 #' #bootstrap difference in mean of tooth length for two groups.
-#' boot(ToothGrowth$len, ToothGrowth$supp)
+#' boot(ToothGrowth$len, ToothGrowth$supp, B = 1000)
 #'
 #' #same as above using formula syntax
-#' boot(len ~ supp, data = ToothGrowth)
+#' boot(len ~ supp, data = ToothGrowth, B = 1000)
 #'
 #' @importFrom stats complete.cases sd terms quantile
 #' @importFrom graphics abline hist legend lines mtext par plot points title

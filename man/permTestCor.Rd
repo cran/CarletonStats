@@ -9,10 +9,18 @@
 \usage{
 permTestCor(x, ...)
 
-\method{permTestCor}{default}(x, y, B = 999, alternative = "two.sided",
-  plot.hist = TRUE, legend.loc = "topright", plot.qq = FALSE,
-  x.name = deparse(substitute(x)), y.name = deparse(substitute(y)),
-  ...)
+\method{permTestCor}{default}(
+  x,
+  y,
+  B = 999,
+  alternative = "two.sided",
+  plot.hist = TRUE,
+  legend.loc = "topright",
+  plot.qq = FALSE,
+  x.name = deparse(substitute(x)),
+  y.name = deparse(substitute(y)),
+  ...
+)
 
 \method{permTestCor}{formula}(formula, data, subset, ...)
 }
@@ -68,11 +76,11 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Permutation test for the correlation of two variables.
+\item \code{permTestCor(default)}: Permutation test for the correlation of two variables.
 
-\item \code{formula}: Permutation test for the correlation of two variables.
+\item \code{permTestCor(formula)}: Permutation test for the correlation of two variables.
+
 }}
-
 \examples{
 
 plot(states03$HSGrad, states03$TeenBirths)
@@ -84,7 +92,7 @@ permTestCor(TeenBirths ~ HSGrad, data = states03)
 }
 \references{
 Tim Hesterberg's website:
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

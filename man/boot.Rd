@@ -8,10 +8,18 @@
 \usage{
 boot(x, ...)
 
-\method{boot}{default}(x, group = NULL, statistic = mean,
-  conf.level = 0.95, B = 10000, plot.hist = TRUE,
-  legend.loc = "topright", plot.qq = FALSE,
-  x.name = deparse(substitute(x)), ...)
+\method{boot}{default}(
+  x,
+  group = NULL,
+  statistic = mean,
+  conf.level = 0.95,
+  B = 10000,
+  plot.hist = TRUE,
+  legend.loc = "topright",
+  plot.qq = FALSE,
+  x.name = deparse(substitute(x)),
+  ...
+)
 
 \method{boot}{formula}(formula, data, subset, ...)
 }
@@ -69,11 +77,11 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Bootstrap a single variable or a grouped variable
+\item \code{boot(default)}: Bootstrap a single variable or a grouped variable
 
-\item \code{formula}: Bootstrap a single variable or a grouped variable
+\item \code{boot(formula)}: Bootstrap a single variable or a grouped variable
+
 }}
-
 \examples{
 
 #ToothGrowth data (supplied by R)
@@ -81,15 +89,15 @@ Observations with missing values are removed.
 boot(ToothGrowth$len)
 
 #bootstrap difference in mean of tooth length for two groups.
-boot(ToothGrowth$len, ToothGrowth$supp)
+boot(ToothGrowth$len, ToothGrowth$supp, B = 1000)
 
 #same as above using formula syntax
-boot(len ~ supp, data = ToothGrowth)
+boot(len ~ supp, data = ToothGrowth, B = 1000)
 
 }
 \references{
 Tim Hesterberg's website
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

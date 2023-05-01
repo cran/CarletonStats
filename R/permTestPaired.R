@@ -31,7 +31,7 @@
 #' (ex. mean of the difference of the resampled variables).
 #' @author Laura Chihara
 #' @references Tim Hesterberg's website:
-#' \url{http://www.timhesterberg.net/bootstrap}
+#' \url{https://www.timhesterberg.net/bootstrap-and-resampling}
 #' @keywords permutation test randomization resampling paired data
 #' @examples
 #'

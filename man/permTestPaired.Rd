@@ -9,11 +9,18 @@
 \usage{
 permTestPaired(x, ...)
 
-\method{permTestPaired}{default}(x, y, B = 9999,
-  alternative = "two.sided", plot.hist = TRUE,
-  legend.loc = "topright", plot.qq = FALSE,
-  x.name = deparse(substitute(x)), y.name = deparse(substitute(y)),
-  ...)
+\method{permTestPaired}{default}(
+  x,
+  y,
+  B = 9999,
+  alternative = "two.sided",
+  plot.hist = TRUE,
+  legend.loc = "topright",
+  plot.qq = FALSE,
+  x.name = deparse(substitute(x)),
+  y.name = deparse(substitute(y)),
+  ...
+)
 
 \method{permTestPaired}{formula}(formula, data, subset, ...)
 }
@@ -65,11 +72,11 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Permutation test for paired data.
+\item \code{permTestPaired(default)}: Permutation test for paired data.
 
-\item \code{formula}: Permutation test for paired data.
+\item \code{permTestPaired(formula)}: Permutation test for paired data.
+
 }}
-
 \examples{
 
 #Does chocolate ice cream have more calories than vanilla ice cream, on average?
@@ -82,7 +89,7 @@ permTestPaired(ChocCalories ~ VanillaCalories, data = Icecream, alternative = "g
 }
 \references{
 Tim Hesterberg's website:
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

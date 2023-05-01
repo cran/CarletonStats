@@ -30,7 +30,7 @@
 #' statistic being bootstrapped.
 #' @author Laura Chihara
 #' @references Tim Hesterberg's website
-#' \url{http://www.timhesterberg.net/bootstrap}
+#' \url{https://www.timhesterberg.net/bootstrap-and-resampling}
 #' @keywords bootstrap randomization resampling
 #' @examples
 #'

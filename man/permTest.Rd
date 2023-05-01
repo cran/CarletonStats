@@ -9,9 +9,17 @@
 \usage{
 permTest(x, ...)
 
-\method{permTest}{default}(x, group, statistic = mean, B = 9999,
-  alternative = "two.sided", plot.hist = TRUE,
-  legend.loc = "topright", plot.qq = FALSE, ...)
+\method{permTest}{default}(
+  x,
+  group,
+  statistic = mean,
+  B = 9999,
+  alternative = "two.sided",
+  plot.hist = TRUE,
+  legend.loc = "topright",
+  plot.qq = FALSE,
+  ...
+)
 
 \method{permTest}{formula}(formula, data = parent.frame(), subset, ...)
 }
@@ -68,11 +76,11 @@ Observations with missing values are removed.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Permutation test
+\item \code{permTest(default)}: Permutation test
 
-\item \code{formula}: Permutation test
+\item \code{permTest(formula)}: Permutation test
+
 }}
-
 \examples{
 
 permTest(states03$ViolentCrime, states03$DeathPenalty)
@@ -83,7 +91,7 @@ permTest(ViolentCrime ~ DeathPenalty, data = states03, alt = "less")
 }
 \references{
 Tim Hesteberg's website:
-\url{http://www.timhesterberg.net/bootstrap}
+\url{https://www.timhesterberg.net/bootstrap-and-resampling}
 }
 \author{
 Laura Chihara

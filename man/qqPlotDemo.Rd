@@ -4,9 +4,18 @@
 \alias{qqPlotDemo}
 \title{Demonstration of the normal qq-plot.}
 \usage{
-qqPlotDemo(n = 25, distribution = "normal", mu = 0, sigma = 1,
-  df = 10, lambda = 10, numdf = 10, dendf = 16, shape1 = 40,
-  shape2 = 5)
+qqPlotDemo(
+  n = 25,
+  distribution = "normal",
+  mu = 0,
+  sigma = 1,
+  df = 10,
+  lambda = 10,
+  numdf = 10,
+  dendf = 16,
+  shape1 = 40,
+  shape2 = 5
+)
 }
 \arguments{
 \item{n}{sample size}

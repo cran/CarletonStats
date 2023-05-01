@@ -9,8 +9,7 @@
 \usage{
 stemPlot(x, ...)
 
-\method{stemPlot}{default}(x, grpvar = NULL, varname = NULL,
-  grpvarname = NULL, ...)
+\method{stemPlot}{default}(x, grpvar = NULL, varname = NULL, grpvarname = NULL, ...)
 
 \method{stemPlot}{formula}(formula, data = parent.frame(), subset, ...)
 }
@@ -48,11 +47,11 @@ the levels of a factor variable.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Stem and leaf plot
+\item \code{stemPlot(default)}: Stem and leaf plot
 
-\item \code{formula}: Stem and leaf plot
+\item \code{stemPlot(formula)}: Stem and leaf plot
+
 }}
-
 \examples{
 
 

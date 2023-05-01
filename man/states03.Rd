@@ -4,7 +4,8 @@
 \name{states03}
 \alias{states03}
 \title{US government data, 2003}
-\format{A data frame with 50 observations on the following 24 variables.
+\format{
+A data frame with 50 observations on the following 24 variables.
 \describe{
 \item{State}{the 50 states}
 \item{Region}{a
@@ -40,9 +41,10 @@ population}
 \item{Vehicles}{Deaths by motor vehicle accidents per
 100000 population}
  \item{Homeowners}{Home ownership rate}
-}}
+}
+}
 \source{
-United States Census Bureau \url{http://www.census.gov/}
+United States Census Bureau \url{https://www.census.gov/}
 }
 \description{
 Census data on the 50 states from 2003.
