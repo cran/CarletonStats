@@ -15,10 +15,13 @@ permTestPaired(x, ...)
   B = 9999,
   alternative = "two.sided",
   plot.hist = TRUE,
-  legend.loc = "topright",
   plot.qq = FALSE,
   x.name = deparse(substitute(x)),
   y.name = deparse(substitute(y)),
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  seed = NULL,
   ...
 )
 
@@ -39,15 +42,20 @@ permTestPaired(x, ...)
 \item{plot.hist}{a logical value. If \code{TRUE}, create a histogram
 displaying the permutation distribution of the statistic.}
 
-\item{legend.loc}{a logical value. If \code{TRUE}, include a legend on the
-histogram.}
-
 \item{plot.qq}{a logical value. If \code{TRUE}, include a quantile-normal
 plot of the permuation distribution.}
 
 \item{x.name}{Label for x variable}
 
 \item{y.name}{Label for y variable}
+
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula of the form \code{y ~ x}, where \code{x, y} are both numeric variables.}
 

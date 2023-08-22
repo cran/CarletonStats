@@ -15,9 +15,12 @@ boot(x, ...)
   conf.level = 0.95,
   B = 10000,
   plot.hist = TRUE,
-  legend.loc = "topright",
   plot.qq = FALSE,
   x.name = deparse(substitute(x)),
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  seed = NULL,
   ...
 )
 
@@ -40,17 +43,21 @@ Default is 95\%.}
 
 \item{B}{number of times to resample (positive integer greater than 2).}
 
-\item{plot.hist}{logical value. If \code{TRUE}, plot the histogrom of the
+\item{plot.hist}{logical value. If \code{TRUE}, plot the histogram of the
 bootstrap distribution.}
-
-\item{legend.loc}{where to place the legend on the histogram. Default is
-\code{"topright"}. Other options include \code{"topleft"},
-\code{"bottomleft"} and \code{"bottomright"}.}
 
 \item{plot.qq}{Logical value. If \code{TRUE}, create a normal
 quantile-quantile plot of the bootstrap distribution.}
 
 \item{x.name}{Label for variable name}
+
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula \code{y ~ g} where \code{y} is a numeric vector and
 \code{g} a factor variable with two levels. If \code{g} is a binary numeric

@@ -17,16 +17,17 @@
 #' bootstrap distribution.
 #' @param plot.qq logical. If \code{TRUE}, a normal quantile-quantile plot of
 #' the replicates will be created.
-#' @param legend.loc location for the legend on the histogram. Options are
-#' \code{"topright"} \code{"topleft"}, \code{"bottomleft"} and
-#' \code{"bottomright"}.
 #' @param x.name Label for variable x
 #' @param y.name Label for variable y
 #' @param formula a formula \code{y ~ x} where \code{x, y} are both numeric vectors
 #' @param data a data frame that contains the variables given in the formula.
 #' @param subset an optional expression indicating what observations to use.
+#' @param xlab an optional character string for the x-axis label
+#' @param ylab an optional character string for the y-axis label
+#' @param title an optional character string giving the plot title
+#' @param seed optional argument to \code{\link{set.seed}}
 #' @param \dots further arguments to be passed to or from methods.
-#' @return The command invisibly returns a vector with the replicates of the
+#' @return The command returns a vector with the replicates of the
 #' statistic being bootstrapped.
 #' @author Laura Chihara
 #' @references Tim Hesterberg's website

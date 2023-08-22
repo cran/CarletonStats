@@ -15,10 +15,13 @@ bootPaired(x, ...)
   conf.level = 0.95,
   B = 10000,
   plot.hist = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
   plot.qq = FALSE,
-  legend.loc = "topright",
   x.name = deparse(substitute(x)),
   y.name = deparse(substitute(y)),
+  seed = NULL,
   ...
 )
 
@@ -38,16 +41,20 @@ bootPaired(x, ...)
 \item{plot.hist}{logical. If \code{TRUE}, plot the histogram of the
 bootstrap distribution.}
 
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
+
 \item{plot.qq}{logical. If \code{TRUE}, a normal quantile-quantile plot of
 the replicates will be created.}
-
-\item{legend.loc}{location for the legend on the histogram. Options are
-\code{"topright"} \code{"topleft"}, \code{"bottomleft"} and
-\code{"bottomright"}.}
 
 \item{x.name}{Label for variable x}
 
 \item{y.name}{Label for variable y}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula \code{y ~ x} where \code{x, y} are both numeric vectors}
 
@@ -56,7 +63,7 @@ the replicates will be created.}
 \item{subset}{an optional expression indicating what observations to use.}
 }
 \value{
-The command invisibly returns a vector with the replicates of the
+The command returns a vector with the replicates of the
 statistic being bootstrapped.
 }
 \description{

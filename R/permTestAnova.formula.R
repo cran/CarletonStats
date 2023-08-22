@@ -23,4 +23,5 @@ permTestAnova.formula <-
     
     y <- do.call("permTestAnova", c(list(x, g), ...))
     
+    y
   }

@@ -16,8 +16,11 @@ permTest(x, ...)
   B = 9999,
   alternative = "two.sided",
   plot.hist = TRUE,
-  legend.loc = "topright",
   plot.qq = FALSE,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  seed = NULL,
   ...
 )
 
@@ -43,12 +46,16 @@ numeric vector, it will be coerced into a factor variable.}
 \item{plot.hist}{a logical value. If \code{TRUE}, the permutation
 distribution of the statistic is plotted.}
 
-\item{legend.loc}{location of the legend for the histogram. Options are
-\code{"topleft"}, \code{"topright"}, \code{"bottomleft"} or
-\code{"bottomright"}.}
-
 \item{plot.qq}{a logical value. If \code{TRUE}, then a normal
 quantile-quantile plot of the resampled test statistic is created.}
+
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula of the form \code{y ~ group} where \code{y} is
 numeric and \code{group} is a factor variable.}

@@ -9,7 +9,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CarletonStats is to …
+The **CarletonStats** package includes commands for bootstrapping and
+permutation tests used in Stat 120 at Carleton College. Additional
+commands of interest include a command for creating grouped bar plots,
+and a demo of the quantile-normal plot for data drawn from different
+distributions.
 
 ## Installation
 

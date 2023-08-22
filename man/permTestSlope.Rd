@@ -15,10 +15,13 @@ permTestSlope(x, ...)
   B = 999,
   alternative = "two.sided",
   plot.hist = TRUE,
-  legend.loc = "topright",
   plot.qq = FALSE,
   x.name = deparse(substitute(x)),
   y.name = deparse(substitute(y)),
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  seed = NULL,
   ...
 )
 
@@ -39,16 +42,20 @@ permTestSlope(x, ...)
 \item{plot.hist}{a logical value. If \code{TRUE}, plot the distribution of
 the slopes obtained from each resample.}
 
-\item{legend.loc}{location of the legend on the histogram. Options are
-\code{"topright"}, \code{"topleft"}, \code{"bottomleft"} and
-\code{"bottomright"}.}
-
 \item{plot.qq}{a logical value. If \code{TRUE}, plot the normal
 quantile-quantile plot of the slopes obtained from each resample.}
 
 \item{x.name}{Label for variable x}
 
 \item{y.name}{Label for variable y}
+
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula \code{y ~ x} where \code{x, y} are numeric vectors.}
 

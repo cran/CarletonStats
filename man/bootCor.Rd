@@ -15,11 +15,13 @@ bootCor(x, ...)
   conf.level = 0.95,
   B = 10000,
   plot.hist = TRUE,
-  hist.title = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
   plot.qq = FALSE,
-  legend.loc = "topright",
   x.name = deparse(substitute(x)),
   y.name = deparse(substitute(y)),
+  seed = NULL,
   ...
 )
 
@@ -39,18 +41,20 @@ bootCor(x, ...)
 \item{plot.hist}{a logical value. If \code{TRUE}, plot the bootstrap
 distribution of the resampled correlation.}
 
-\item{hist.title}{a user supplied title for the histogram.}
+\item{xlab}{an optional character string for the x-axis label}
+
+\item{ylab}{an optional character string for the y-axis label}
+
+\item{title}{an optional character string giving the plot title}
 
 \item{plot.qq}{a logical value. If \code{TRUE} a normal quantile-quantile
 plot of the bootstraped values is created.}
 
-\item{legend.loc}{location to place the legend. Options include
-\code{"topright"}, \code{"topleft"}, \code{"bottomright"},
-\code{"bottomleft"}.}
-
 \item{x.name}{Label for variable x}
 
 \item{y.name}{Label for variable y}
+
+\item{seed}{optional argument to \code{\link{set.seed}}}
 
 \item{formula}{a formula of the form lhs ~ rhs where lhs is a numeric variable giving the data values and rhs a factor with two levels giving the corresponding groups.}
 
@@ -60,7 +64,7 @@ By default the variables are taken from environment(formula).}
 \item{subset}{an optional vector specifying a subset of observations to be used.}
 }
 \value{
-The command invisibly returns the correlations of the resampled
+The command returns the correlations of the resampled
 observations.
 }
 \description{

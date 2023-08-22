@@ -23,4 +23,5 @@ function(formula, data = parent.frame(), subset,...)
 
     y <- do.call("permTest", c(list(x, g), ...))
 
+    y
 }

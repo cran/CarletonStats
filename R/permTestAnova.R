@@ -15,17 +15,18 @@
 #' @param group a factor variable with two or more levels. If \code{group} is a
 #' numeric vector, it will be coerced into a factor variable.
 #' @param B the number of resamples (positive integer greater than 2).
+#' @param seed optional argument to \code{\link{set.seed}}
 #' @param plot.hist a logical value. If \code{TRUE}, the permutation
 #' distribution of the statistic is plotted.
-#' @param legend.loc location of the legend for the histogram. Options are
-#' \code{"topleft"}, \code{"topright"}, \code{"bottomleft"} or
-#' \code{"bottomright"}.
 #' @param plot.qq a logical value. If \code{TRUE}, then a normal
 #' quantile-quantile plot of the resampled test statistic is created.
 #' @param formula a formula of the form \code{y ~ group} where \code{y} is
 #' numeric and \code{group} is a factor variable.
 #' @param data a data frame with the variables in the formula.
 #' @param subset an optional expression specifying which observations to keep.
+#' @param xlab an optional character string for the x-axis label
+#' @param ylab an optional character string for the y-axis label
+#' @param title an optional character string giving the plot title
 #' @param \dots further arguments to be passed to or from methods.
 #' @return Returns invisibly a vector of the replicates of the test statistic.
 #' @author Adam Loy, Laura Chihara

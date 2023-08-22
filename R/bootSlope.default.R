@@ -1,11 +1,15 @@
 #' @describeIn bootSlope Bootstrap the slope of a simple linear regression line
 #' @export
 bootSlope.default <-
-  function(x, y, conf.level = 0.95, B = 10000, plot.hist = TRUE, hist.title = NULL,
-           plot.qq = FALSE, legend.loc = "topright", x.name=deparse(substitute(x)), y.name=deparse(substitute(y)), ...)
+  function(x, y, conf.level = 0.95, B = 10000, plot.hist = TRUE, 
+           xlab = NULL, ylab = NULL, title = NULL,
+           plot.qq = FALSE, x.name=deparse(substitute(x)), y.name=deparse(substitute(y)),
+           seed = NULL, ...)
   {
     
     if (B%%1  != 0 || B < 2) stop("B must be a positive integer")
+    
+    if(!is.null(seed)) set.seed(seed)
     
     alpha <- 1 - conf.level
     
@@ -33,36 +37,21 @@ bootSlope.default <-
     } #end for
     bootstrap.mean <- mean(temp)
     
-    cat("\n\t** Bootstrap of slope **\n\n")
-    cat(" Observed slope between ", x.name, " and ", y.name, ":", round(observed, 5), "\n")
-    cat(" Mean of bootstrap distribution:",  round(mean(temp),5),"\n")
-    cat(" Standard error of bootstrap distribution:", round(sd(temp), 5),"\n\n")
-    cat(" Bootstrap percentile interval\n")
-    print(round(quantile(temp, c(alpha/2, 1-alpha/2)), 5))
-    cat("\n\t\t*--------------*\n\n")
     
-    if (plot.hist){
-      
-      if (is.null(hist.title))
-        hist.title <- paste("Bootstrap distribution of slope\n", x.name," and ", y.name, sep=" ")
-      #hist in R gives counts
-      out <-   hist(temp, plot=FALSE)
-      out$density <- 100*(out$counts)/sum(out$counts)
-      plot(out, freq = FALSE, ylab = "Percent", main = hist.title, xlab = "Slope", cex.main = .9, cex.lab = .9)
-      
-      points(observed, 0, pch = 2, col = "red")
-      points(bootstrap.mean, 0, pch = 4, col = "blue")
-      legend(legend.loc, legend = c("Observed","Bootstrap"),  pch = c(2,4),
-             col = c("red", "blue"), cex = 0.8)
-      
-    } #end if plot.hist
+    # invisible(temp)
+    class(temp) <- "carlboot"
+    attr(temp, "observed")  <- observed
+    attr(temp, "statistic") <- "slope"
+    attr(temp, "groups")    <- NULL
+    attr(temp, "x.name")    <- x.name
+    attr(temp, "y.name")    <- y.name
+    attr(temp, "level")     <- conf.level
+    attr(temp, "xlab")      <- xlab
+    attr(temp, "ylab")      <- ylab
+    attr(temp, "title")     <- title
+    attr(temp, "plot.hist") <- plot.hist
+    attr(temp, "plot.qq")   <- plot.qq
     
-    if (plot.qq){
-      if (Sys.getenv("RSTUDIO_USER_IDENTITY") == "")
-        grDevices::dev.new()
-      qqnorm(temp, ylab = "Bootstrap")
-      qqline(temp)
-    }  #end if plot.qq
     
-    invisible(temp)
+    temp
   }

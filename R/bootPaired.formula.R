@@ -26,4 +26,6 @@ function(formula,  data, subset ,  ...)
     y <- mf[[response]]
     x <- mf[[-response]]
     y <- do.call("bootPaired", list(x, y, x.name=varnames[2], y.name=varnames[1],...))
+    
+    y
 }

@@ -12,12 +12,11 @@
 #' @param x a numeric vector.
 #' @param y a numeric vector.
 #' @param B the number of resamples.
+#' @param seed optional argument to \code{\link{set.seed}}
 #' @param alternative the alternative hypothesis. Options are
 #' \code{"two.sided"}, \code{"less"} and \code{"greater"}.
 #' @param plot.hist a logical value. If \code{TRUE}, create a histogram
 #' displaying the permutation distribution of the statistic.
-#' @param legend.loc a logical value. If \code{TRUE}, include a legend on the
-#' histogram.
 #' @param plot.qq a logical value. If \code{TRUE}, include a quantile-normal
 #' plot of the permuation distribution.
 #' @param x.name Label for x variable
@@ -26,6 +25,9 @@
 #' @param data an optional data frame containing the variables in the formula. By default the
 #' variables are taken from environment(formula).
 #' @param subset	an optional vector specifying a subset of observations to be used.
+#' @param xlab an optional character string for the x-axis label
+#' @param ylab an optional character string for the y-axis label
+#' @param title an optional character string giving the plot title
 #' @param \dots further arguments to be passed to or from methods.
 #' @return Returns invisibly a vector of the replicates of the test statistic
 #' (ex. mean of the difference of the resampled variables).

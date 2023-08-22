@@ -26,4 +26,6 @@ bootSlope.formula <-
     y <- mf[[response]]
     x <- mf[[-response]]
     y <- do.call("bootSlope", list(x, y, x.name=varnames[2], y.name=varnames[1],...))
+    
+    y
   }
