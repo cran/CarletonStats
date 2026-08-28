@@ -36,7 +36,7 @@
 #' groupedBar(states03$DeathPenalty, states03$Region, legend.loc = "topleft")
 #'
 #' #Using a formula syntax:
-#' 
+#'
 #' groupedBar(~Region, data = states03)
 #' groupedBar(DeathPenalty ~ Region, data = states03, legend.loc = "topleft")
 #' }
@@ -44,8 +44,6 @@
 #' @export
 
 groupedBar <-
-function(resp, ...)
-{
-  UseMethod("groupedBar")
-
-}
+  function(resp, ...) {
+    UseMethod("groupedBar")
+  }

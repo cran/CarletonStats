@@ -11,7 +11,7 @@
 #' Observations with missing values are removed.
 #'
 #' @aliases permTestAnova permTestAnova.default permTestAnova.formula
-#' @param x a numeric vector. 
+#' @param x a numeric vector.
 #' @param group a factor variable with two or more levels. If \code{group} is a
 #' numeric vector, it will be coerced into a factor variable.
 #' @param B the number of resamples (positive integer greater than 2).
@@ -41,13 +41,10 @@
 #' \dontrun{
 #' permTestAnova(ViolentCrime ~ Region, data = states03, B = 9999)
 #' }
-#' 
+#'
 #' @export
 
-
 permTestAnova <-
-function(x, ...){
-
-UseMethod("permTestAnova")
-
-}
+  function(x, ...) {
+    UseMethod("permTestAnova")
+  }

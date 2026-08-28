@@ -1,3 +1,13 @@
+# CarletonStats 2.3
+
+* `boot()` and `permTest()` now accept logical, factor, and character response variables with exactly two levels. A new `success` argument specifies which level is coded as 1 (proportion). A message confirms the coding chosen.
+
+* `bootPaired()` computed the paired difference as `x - y`, inconsistent with `permTestPaired()`'s `y - x`; both now use `y - x`, and `permTestPaired()`'s printed group means, which were mislabeled, now show the correct name next to each mean.
+
+* `permTestCor()` and `permTestPaired()` had a `seed` argument that was silently ignored, making results non-reproducible. The `seed` argument now correctly sets the random seed before the permutation loop.
+
+* Minimum R version is now declared as R (>= 3.5.0) and minimum ggplot2 version as 3.3.0 in `DESCRIPTION`.
+
 # CarletonStats 2.2
 
 * The `boot*()` functions now return the bootstrap statistics as a `carlboot` object, which has `print`, `plot`, `summary`, and `confint` methods.

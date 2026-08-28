@@ -10,12 +10,18 @@
 #' Observations with missing values are removed.
 #'
 #' @aliases boot boot.default boot.formula
-#' @param x a numeric vector
+#' @param x a numeric, logical, factor, or character vector. Logical, factor,
+#' and character vectors with exactly two unique values are converted to 0/1,
+#' and \code{mean} is used to compute the proportion.
 #' @param group an optional grouping variable (vector), usually a factor
 #' variable. If it is a binary numeric variable, it will be coerced to a
 #' factor.
-#' @param statistic function that computes the statistic of interest. Default is the
-#' \code{mean}.
+#' @param statistic function that computes the statistic of interest. Default
+#' is the \code{mean}.
+#' @param success a character string naming the level of \code{x} to code as
+#' 1 when \code{x} is a logical, factor, or character variable. Defaults to
+#' \code{NULL}, which uses the second factor level (alphabetically) or
+#' \code{TRUE} for logical vectors.
 #' @param conf.level confidence level for the bootstrap percentile interval.
 #' Default is 95\%.
 #' @param B number of times to resample (positive integer greater than 2).
@@ -52,14 +58,25 @@
 #' #same as above using formula syntax
 #' boot(len ~ supp, data = ToothGrowth, B = 1000)
 #'
+#' # Penguin Survival proportion
+#' boot(penguin_survival$Status, data = penguin_survival, B = 1000)
+#'
+#' # same as above, but with the formula syntax
+#' boot(~Status, data = penguin_survival, B = 1000)
+#'
+#' # Penguin Survival if tagged vs. untagged
+#' # bootstrap difference in proportions of survival
+#' boot(penguin_survival$Status, penguin_survival$TagType, B = 1000)
+#'
+#' # now using the formula syntax
+#' boot(Status ~ TagType, data = penguin_survival, B = 1000)
+#'
 #' @importFrom stats complete.cases sd terms quantile
 #' @importFrom graphics abline hist legend lines mtext par plot points title
 #' @importFrom grDevices dev.new
 #' @export
 
 boot <-
-function(x,  ...)
-{
-  UseMethod("boot")
-
-}
+  function(x, ...) {
+    UseMethod("boot")
+  }

@@ -2,29 +2,29 @@
 #' @export
 
 permTestCor.formula <-
-function(formula,  data, subset ,  ...)
-{
+  function(formula, data, subset, ...) {
+    if (
+      missing(formula) ||
+        (length(formula) != 3L) ||
+        (length(attr(terms(formula[-2L]), "term.labels")) != 1L)
+    ) {
+      stop("'formula' missing or incorrect")
+    }
 
-    if (missing(formula) || (length(formula) != 3L) || (length(attr(terms(formula[-2L]),
-        "term.labels")) != 1L))
-        stop("'formula' missing or incorrect")
-
-    m <- match.call(expand.dots = FALSE)
-    if (is.matrix(eval(m$data, parent.frame())))
-        m$data <- as.data.frame(data)
-     m[[1L]] <- as.name("model.frame")
-     m$... <- NULL
-     mf <- eval(m, parent.frame())
-     if (length(mf)!= 2L)
-       stop("Invalid formula")
-
-     nmiss <- length(attr(mf, "na.action"))
-     if (nmiss > 0)
-      cat("\n ", nmiss, "observation(s) removed due to missing values.\n")
-    varnames <- names(mf)
-    response <- attr(attr(mf, "terms"), "response")
-    y <- mf[[response]]
-    x <- mf[[-response]]
-    y <- do.call("permTestCor", list(x, y, x.name=varnames[2], y.name=varnames[1],...))
-    y
-}
+    parsed <- .parse_formula_two_var(
+      match.call(expand.dots = FALSE),
+      parent.frame()
+    )
+    do.call(
+      "permTestCor",
+      c(
+        list(
+          parsed$x,
+          parsed$y,
+          x.name = parsed$x.name,
+          y.name = parsed$y.name
+        ),
+        list(...)
+      )
+    )
+  }

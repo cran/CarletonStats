@@ -21,6 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Adam Loy \email{aloy@carleton.edu} (\href{https://orcid.org/0000-0002-5780-4611}{ORCID})
   \item Laura Chihara \email{flchihara@carleton.edu}
 }
 

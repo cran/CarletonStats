@@ -17,7 +17,7 @@
 #' plot of the bootstraped values is created.
 #' @param x.name Label for variable x
 #' @param y.name Label for variable y
-#' @param formula a formula of the form lhs ~ rhs where lhs is a numeric variable 
+#' @param formula a formula of the form lhs ~ rhs where lhs is a numeric variable
 #' giving the data values and rhs a factor with two levels giving the corresponding groups.
 #' @param data an optional data frame containing the variables in the formula formula.
 #' By default the variables are taken from environment(formula).
@@ -40,11 +40,9 @@
 #' bootSlope(InfMortality ~ ColGrad, data = states03, B = 1000)
 #' bootSlope(states03$ColGrad, states03$InfMortality, B = 1000)
 #'
-#' @importFrom stats cor 
+#' @importFrom stats cor
 #' @export
 bootSlope <-
-  function(x,  ...)
-  {
+  function(x, ...) {
     UseMethod("bootSlope")
-    
   }

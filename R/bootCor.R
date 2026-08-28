@@ -41,12 +41,10 @@
 #' bootCor(InfMortality ~ ColGrad, data = states03, B = 1000)
 #' bootCor(states03$ColGrad, states03$InfMortality, B = 1000)
 #'
-#' @importFrom stats cor 
+#' @importFrom stats cor
 #' @export
 
 bootCor <-
-function(x,  ...)
-{
-  UseMethod("bootCor")
-
-}
+  function(x, ...) {
+    UseMethod("bootCor")
+  }

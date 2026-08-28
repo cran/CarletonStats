@@ -45,8 +45,6 @@
 #' @export
 
 bootPaired <-
-function(x,  ...)
-{
-  UseMethod("bootPaired")
-
-}
+  function(x, ...) {
+    UseMethod("bootPaired")
+  }

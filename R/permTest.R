@@ -13,12 +13,16 @@
 #' Observations with missing values are removed.
 #'
 #' @aliases permTest permTest.default permTest.formula
-#' @param x a numeric vector. If the function is the mean (\code{fun = mean})
-#' and \code{x} is a binary numeric vector of 0's and 1's, then the test is
-#' between proportions.
+#' @param x a numeric, logical, factor, or character vector. Logical, factor,
+#' and character vectors with exactly two unique values are converted to 0/1,
+#' and \code{mean} is used to compute the proportion.
 #' @param group a factor variable with two levels. If \code{group} is a binary
 #' numeric vector, it will be coerced into a factor variable.
 #' @param statistic the statistic of interest.
+#' @param success a character string naming the level of \code{x} to code as
+#' 1 when \code{x} is a logical, factor, or character variable. Defaults to
+#' \code{NULL}, which uses the second factor level (alphabetically) or
+#' \code{TRUE} for logical vectors.
 #' @param B the number of resamples (positive integer greater than 2).
 #' @param seed optional argument to \code{\link{set.seed}}
 #' @param alternative the alternative hypothesis. Options are
@@ -42,17 +46,21 @@
 #' @keywords permutation test resampling randomization
 #' @examples
 #'
+#' # Testing the difference in means
 #' permTest(states03$ViolentCrime, states03$DeathPenalty)
 #'
 #' #using formula syntax
 #' permTest(ViolentCrime ~ DeathPenalty, data = states03, alt = "less")
 #'
+#' # Testing the difference in proportions
+#' permTest(penguin_survival$Status, penguin_survival$TagType, B = 999)
+#'
+#' #using formula syntax
+#' permTest(Status ~ TagType, data = penguin_survival, B = 999)
+#'
 #' @export
 
-
 permTest <-
-function(x, ...){
-
-UseMethod("permTest")
-
-}
+  function(x, ...) {
+    UseMethod("permTest")
+  }

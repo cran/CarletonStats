@@ -12,6 +12,7 @@ boot(x, ...)
   x,
   group = NULL,
   statistic = mean,
+  success = NULL,
   conf.level = 0.95,
   B = 10000,
   plot.hist = TRUE,
@@ -27,7 +28,9 @@ boot(x, ...)
 \method{boot}{formula}(formula, data, subset, ...)
 }
 \arguments{
-\item{x}{a numeric vector}
+\item{x}{a numeric, logical, factor, or character vector. Logical, factor,
+and character vectors with exactly two unique values are converted to 0/1,
+and \code{mean} is used to compute the proportion.}
 
 \item{\dots}{further arguments to be passed to or from methods.}
 
@@ -35,8 +38,13 @@ boot(x, ...)
 variable. If it is a binary numeric variable, it will be coerced to a
 factor.}
 
-\item{statistic}{function that computes the statistic of interest. Default is the
-\code{mean}.}
+\item{statistic}{function that computes the statistic of interest. Default
+is the \code{mean}.}
+
+\item{success}{a character string naming the level of \code{x} to code as
+1 when \code{x} is a logical, factor, or character variable. Defaults to
+\code{NULL}, which uses the second factor level (alphabetically) or
+\code{TRUE} for logical vectors.}
 
 \item{conf.level}{confidence level for the bootstrap percentile interval.
 Default is 95\%.}
@@ -100,6 +108,19 @@ boot(ToothGrowth$len, ToothGrowth$supp, B = 1000)
 
 #same as above using formula syntax
 boot(len ~ supp, data = ToothGrowth, B = 1000)
+
+# Penguin Survival proportion
+boot(penguin_survival$Status, data = penguin_survival, B = 1000)
+
+# same as above, but with the formula syntax
+boot(~Status, data = penguin_survival, B = 1000)
+
+# Penguin Survival if tagged vs. untagged
+# bootstrap difference in proportions of survival
+boot(penguin_survival$Status, penguin_survival$TagType, B = 1000)
+
+# now using the formula syntax
+boot(Status ~ TagType, data = penguin_survival, B = 1000)
 
 }
 \references{

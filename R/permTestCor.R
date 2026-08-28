@@ -49,8 +49,6 @@
 #' @export
 
 permTestCor <-
-function(x,  ...)
-{
-  UseMethod("permTestCor")
-
-}
+  function(x, ...) {
+    UseMethod("permTestCor")
+  }

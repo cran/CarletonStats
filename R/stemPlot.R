@@ -31,12 +31,10 @@
 #'
 #' stemPlot(Births ~ Region, data = states03)
 #'
-#' @importFrom graphics stem 
+#' @importFrom graphics stem
 #' @export
 
 stemPlot <-
-function(x, ...)
-{
-  UseMethod("stemPlot")
-
-}
+  function(x, ...) {
+    UseMethod("stemPlot")
+  }

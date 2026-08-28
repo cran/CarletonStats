@@ -1,6 +1,6 @@
 #' Permutation test for the Slope
 #'
-#' Hypothesis test for a slope of a simple linear regression model. 
+#' Hypothesis test for a slope of a simple linear regression model.
 #' The null hypothesis is that the population slope is 0.
 #'
 #' Perform a permutation test to test \eqn{latex}{H_0: \beta = 0}, where
@@ -49,8 +49,6 @@
 #' @export
 
 permTestSlope <-
-function(x,  ...)
-{
-  UseMethod("permTestSlope")
-
-}
+  function(x, ...) {
+    UseMethod("permTestSlope")
+  }

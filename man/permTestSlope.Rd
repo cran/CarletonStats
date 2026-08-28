@@ -68,7 +68,7 @@ Returns invisibly a vector of the slopes obtained by the
 randomization.
 }
 \description{
-Hypothesis test for a slope of a simple linear regression model. 
+Hypothesis test for a slope of a simple linear regression model.
 The null hypothesis is that the population slope is 0.
 }
 \details{

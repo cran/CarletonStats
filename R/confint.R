@@ -9,7 +9,7 @@
 #' @param ... not used
 #'
 #' @rdname confint
-#' @export 
+#' @export
 #' @method confint carlboot
 #' @importFrom stats confint
 #' @import ggplot2

@@ -49,6 +49,26 @@ NULL
 #' @keywords datasets
 NULL
 
+#' Penguin survival by tag type
+#'
+#' Survival outcomes for penguins fitted with metal or electronic tags.
+#'
+#' @name penguin_survival
+#' @docType data
+#' @format A data frame with 2 observations on the following 3 variables.
+#' \describe{
+#'   \item{TagType}{Tag type: \code{Metal} or \code{Electronic}}
+#'   \item{Status}{Survival status: \code{Survived} or \code{Electronic}}
+#' }
+#' @source Saraux, C., et al., “Reliability of flipper-banded penguins as
+#' indicators of climate change,” Nature, January 2011; 469: 203–206.
+#'
+#' Lock, Robin H., et al. Statistics: Unlocking the power of data.
+#' John Wiley & Sons, 2025.
+#'
+#' @keywords datasets
+NULL
+
 #' US government data, 2003
 #'
 #' Census data on the 50 states from 2003.

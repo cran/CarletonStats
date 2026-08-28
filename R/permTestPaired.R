@@ -47,8 +47,6 @@
 #' @export
 
 permTestPaired <-
-function(x,  ...)
-{
-  UseMethod("permTestPaired")
-
-}
+  function(x, ...) {
+    UseMethod("permTestPaired")
+  }

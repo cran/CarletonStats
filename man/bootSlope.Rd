@@ -56,7 +56,7 @@ plot of the bootstraped values is created.}
 
 \item{seed}{optional argument to \code{\link{set.seed}}}
 
-\item{formula}{a formula of the form lhs ~ rhs where lhs is a numeric variable 
+\item{formula}{a formula of the form lhs ~ rhs where lhs is a numeric variable
 giving the data values and rhs a factor with two levels giving the corresponding groups.}
 
 \item{data}{an optional data frame containing the variables in the formula formula.
